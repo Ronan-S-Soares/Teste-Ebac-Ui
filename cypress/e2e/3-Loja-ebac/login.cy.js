@@ -50,7 +50,7 @@ describe('Funcionalidade: Login', () => {
     })
 
     //Teste por massa de dados fixure
-    it.only('Deve fazer login com sucesso usando Fixure', () => {
+    it('Deve fazer login com sucesso usando Fixure', () => {
         cy.fixture('perfil').then(dados => {
             cy.get('#username').type(dados.usuario, {log: false})
             cy.get('#password').type(dados.senha, {log: false})
@@ -58,6 +58,15 @@ describe('Funcionalidade: Login', () => {
             cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, antonio (não é antonio? Sair)')
 
         })
+
+        //Teste por comando personalizados
+        it.only('Deve fazer login usando comandos personalizados', () => {
+            cy.login('Antonio@2testes.com', 'Teste123')
+            cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, antonio (não é antonio? Sair)')
+
+
+            
+        });
     })
 
 })

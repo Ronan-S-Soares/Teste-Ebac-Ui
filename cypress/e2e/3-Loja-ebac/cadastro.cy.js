@@ -8,6 +8,10 @@ describe('Funcionalidade: Cadastro', () => {
         cy.visit('my-account')
 
     });
+    
+    afterEach(() => {
+        cy.screenshot()
+    });
 
     it('Deve completar o cadastro', () => {
         var nome = faker.person.firstName()
@@ -28,4 +32,11 @@ describe('Funcionalidade: Cadastro', () => {
 
 
     });
+//dados para completar login
+it.only('Deve completar com sucesso - usando comando personazado', () => {
+    cy.preCadastro(faker.internet.email(),'Teste123', faker.person.firstName(), faker.person.lastName())
+    cy.get('.woocommerce-message').should('exist')
+    
+});
+
 });
